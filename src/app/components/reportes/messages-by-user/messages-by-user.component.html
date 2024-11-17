@@ -1,0 +1,18 @@
+<div class="title-container">
+    <div style="text-align: center" class="title">
+      <h1>Mensajes por Usuario</h1>
+    </div>
+    <div style="text-align: center" class="chart-container">
+      <!-- Gráfico de Área Polar -->
+      <canvas
+        baseChart
+        [datasets]="polarChartData"
+        [labels]="polarChartLabels"
+        [options]="polarChartOptions"
+        [legend]="polarChartLegend"
+        [type]="polarChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  

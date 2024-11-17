@@ -1,0 +1,43 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <h1>{{ isEditMode ? 'Editar Rol' : 'Registrar Rol' }}</h1>
+    <form [formGroup]="roleForm" (ngSubmit)="saveRole()">
+      
+      <!-- Campo Role ID (solo visible y deshabilitado en edición) -->
+      <mat-form-field class="example-full-width" *ngIf="isEditMode">
+        <mat-label>ID de Rol</mat-label>
+        <input matInput formControlName="roleId" />
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Role Name -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Rol</mat-label>
+        <mat-select formControlName="roleName" required>
+          <mat-option *ngFor="let option of roleOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="roleForm.get('roleName')?.hasError('required')">El nombre del rol es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo User -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="user" required>
+          <mat-option *ngFor="let user of users" [value]="user.userId">
+            {{ user.username }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="roleForm.get('user')?.hasError('required')">El usuario es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <div style="margin-top: 20px;">
+        <button mat-flat-button color="primary" type="submit">
+          {{ isEditMode ? 'Guardar Cambios' : 'Registrar' }}
+        </button>
+        <button mat-button (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+</div>

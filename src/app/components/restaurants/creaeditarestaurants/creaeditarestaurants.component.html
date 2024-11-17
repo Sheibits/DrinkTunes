@@ -1,0 +1,57 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <h1>{{ isEditMode ? 'Editar Restaurante' : 'Registrar Restaurante' }}</h1>
+    <form [formGroup]="restaurantForm" (ngSubmit)="saveRestaurant()">
+      
+      <!-- Campo Restaurant ID (solo visible en edición) -->
+      <mat-form-field class="example-full-width" *ngIf="isEditMode">
+        <mat-label>ID de Restaurante</mat-label>
+        <input matInput formControlName="restaurantId" />
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Restaurant Name -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Restaurante</mat-label>
+        <input matInput formControlName="restaurantName" required />
+        <mat-error *ngIf="restaurantForm.get('restaurantName')?.hasError('required')">El nombre del restaurante es obligatorio.</mat-error>
+        <mat-error *ngIf="restaurantForm.get('restaurantName')?.hasError('minlength')">El nombre debe tener al menos 3 caracteres.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Location -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Ubicación</mat-label>
+        <input matInput formControlName="location" required />
+        <mat-error *ngIf="restaurantForm.get('location')?.hasError('required')">La ubicación es obligatoria.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Genre -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Género</mat-label>
+        <input matInput formControlName="genre" required />
+        <mat-error *ngIf="restaurantForm.get('genre')?.hasError('required')">El género es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo User -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="userId" required>
+          <mat-option *ngFor="let user of users" [value]="user.userId">
+            {{ user.username }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="restaurantForm.get('userId')?.hasError('required')">El usuario es obligatorio.</mat-error>
+      </mat-form-field>
+      <br />
+  
+      <div style="margin-top: 20px;">
+        <button mat-flat-button color="primary" type="submit">
+          {{ isEditMode ? 'Guardar Cambios' : 'Registrar' }}
+        </button>
+        <button mat-button (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  

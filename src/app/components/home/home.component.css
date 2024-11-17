@@ -1,0 +1,20 @@
+.container {
+    position: relative; /* Permite posicionar elementos dentro del contenedor */
+    width: 80%; /* Ancho del contenedor */
+    height: 400px; /* Altura del contenedor */
+    overflow: hidden; /* Esconde cualquier desbordamiento */
+    background-image: url('../../assets/angular.png'); /* Imagen de fondo */
+    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.image {
+    position: absolute; /* Permite que la imagen ocupe toda la pantalla */
+    top: 50%;
+    left: 50%;
+    width: 100%; /* Ancho completo */
+    height: auto; /* Mantiene la proporción */
+    min-height: 100%; /* Asegura que cubra toda la altura */
+    transform: translate(-50%, -50%); /* Centra la imagen */
+}

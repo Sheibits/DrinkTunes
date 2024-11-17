@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!-- Botones para navegar entre reportes -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button mat-raised-button color="primary" routerLink="role-distribution">
+      Distribución de Roles
+    </button>
+    <button mat-raised-button color="accent" routerLink="activity-summary">
+      Resumen de Actividades
+    </button>
+  </div>
+</div>

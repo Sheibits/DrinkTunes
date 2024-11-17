@@ -1,0 +1,17 @@
+<div class="title-container">
+    <div style="text-align: center" class="title">
+      <h1>Anuncios por Restaurante</h1>
+    </div>
+    <div style="text-align: center" class="chart-container">
+      <!-- Gráfico de burbujas -->
+      <canvas
+        baseChart
+        [datasets]="bubbleChartData"
+        [labels]="bubbleChartLabels"
+        [options]="bubbleChartOptions"
+        [type]="bubbleChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  

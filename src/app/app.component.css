@@ -1,0 +1,14 @@
+::ng-deep .mat-menu-panel {
+    background-color: #003366 !important; /* Fondo del menú */
+    color: white !important; /* Color del texto */
+  }
+  
+  ::ng-deep .mat-menu-item {
+    color: white !important; /* Color del texto en los elementos del menú */
+  }
+  
+  ::ng-deep .mat-menu-item:hover {
+    background-color: #005599 !important; /* Fondo al pasar el cursor */
+    color: white !important; /* Color del texto al pasar el cursor */
+  }
+  

@@ -1,0 +1,75 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <h1>{{ isEditMode ? 'Editar Notificación' : 'Registrar Notificación' }}</h1>
+    <form [formGroup]="notificationForm" (ngSubmit)="saveNotification()">
+      
+      <!-- Campo Notification ID (solo visible en edición) -->
+      <mat-form-field class="example-full-width" *ngIf="isEditMode">
+        <mat-label>ID de Notificación</mat-label>
+        <input matInput formControlName="notificationId" />
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Notification Text -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Texto de Notificación</mat-label>
+        <textarea matInput formControlName="notificationText" required rows="3"></textarea>
+        <mat-error *ngIf="notificationForm.get('notificationText')?.hasError('required')">
+          El texto de la notificación es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Notified At -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Fecha de Notificación</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="notifiedAt" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="notificationForm.get('notifiedAt')?.hasError('required')">
+          La fecha de notificación es obligatoria.
+        </mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Is Read -->
+      <mat-checkbox formControlName="isRead">¿Leído?</mat-checkbox>
+      <br /><br />
+  
+      <!-- Campo User Selector -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="userId" required>
+          <mat-option *ngFor="let user of users" [value]="user.userId">
+            {{ user.username }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="notificationForm.get('userId')?.hasError('required')">
+          El usuario es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Campo Restaurant Ads Selector -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Anuncio de Restaurante</mat-label>
+        <mat-select formControlName="restaurantAdsId" required>
+          <mat-option *ngFor="let ad of restaurantAds" [value]="ad.adId">
+            {{ ad.description }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="notificationForm.get('restaurantAdsId')?.hasError('required')">
+          El anuncio de restaurante es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br />
+  
+      <!-- Botones de acción -->
+      <div style="margin-top: 20px;">
+        <button mat-flat-button color="primary" type="submit">
+          {{ isEditMode ? 'Guardar Cambios' : 'Registrar' }}
+        </button>
+        <button mat-button (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  
